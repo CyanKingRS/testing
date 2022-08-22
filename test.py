@@ -14,7 +14,7 @@ def main():
     try:
         port = '/dev/ttyUSB2'
         script, device = argv
-        if argv[2]:
+        if len(argv) > 2:
             port = argv[2]
         print("Starting" + script +"...")
         configer = JSON_handler()
@@ -50,3 +50,6 @@ def main():
         print("Erorr: Bad arguments.")
         raise Exception(v)
 
+
+
+main()
