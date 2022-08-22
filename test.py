@@ -10,13 +10,11 @@ from my_modules.info_printer import Printer
 from my_modules.json_handler import JSON_handler
 from my_modules.serial_processor import Serial_processor
 
-def main():
+def main(script, device="trm240", port='/dev/ttyUSB2'):
     try:
-        port = '/dev/ttyUSB2'
-        script, device = argv
-        if len(argv) > 2:
-            port = argv[2]
+        
         print("Starting" + script +"...")
+        
         configer = JSON_handler()
         data = configer.read()
         devlist = data["devices"]
@@ -52,4 +50,4 @@ def main():
 
 
 
-main()
+main(*argv)
