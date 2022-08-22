@@ -1,0 +1,5 @@
+Manufacturer: OK;Model: EC21;
+Command;Expected;Response;Result;
+ATE1;OK;OK;True;
+AT+CMGF=1;OK;OK;True;
+AT+CMGS=?;OK;OK;True;

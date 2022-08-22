@@ -1,0 +1,17 @@
+{
+    "devices":[
+        {
+            "name":"trm240","type":"serial","commands":[
+                {"command":"ATE1","expected":"OK", "arguments":""},
+                {"command":"AT+CMGF=1","expected":"OK", "arguments":""},
+                {"command":"AT+CMGS=?","expected":"OK", "arguments":[]}
+            ]
+            
+        },
+        {
+            "name":"rutx11", "type":"ssh","commands":[
+                {"command":"ATE1","expected":"ERROR","arguments":""}
+            ]
+        }
+    ]
+}
