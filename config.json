@@ -1,4 +1,8 @@
+
 {
+    "ssh_name":"root",
+    "ssh_ip":"192.168.1.1",
+    "ssh_pasword":"Admin123",
     "devices":[
         {
             "name":"trm240","type":"serial","commands":[
