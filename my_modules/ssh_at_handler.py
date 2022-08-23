@@ -15,7 +15,7 @@ class Ssh_AT_handler:
         self.printer = printer
         
         
-    def process_all_commands(self, ssh, data, dev_number):
+    def process_all_commands(self, shell, data, dev_number):
         try:
             device = data['devices'][dev_number]
             
@@ -25,9 +25,13 @@ class Ssh_AT_handler:
             index = 0
             for j in device['commands']:
                 index+=1
+                
                 self.printer.print_test_info(index, max_tests, j['command'], j['expected'])
-                response, res = self.cmd_processor.check_command(ssh, j['command'], j['expected'], j['arguments'])
+                
+                response, res = self.cmd_processor.check_command(shell, j['command'], j['expected'], j['arguments'])
+                
                 self.printer.print_result(response, res)
+                
                 self.csv_writer.write(j['command'], j['expected'], response, res)
                 
         except KeyError as k:
@@ -36,4 +40,14 @@ class Ssh_AT_handler:
         except TypeError as t:
             print("Error: device not found in config file.")
             raise Exception(t)
-                
+    
+    
+    def write_device_info(self, shell):
+        self.cmd_processor.send_command(shell, "ATE1")
+        self.cmd_processor.get_response(shell)
+        self.cmd_processor.send_command(shell, "AT+GMI")
+        resp_man = self.cmd_processor.get_dev_info(shell)
+        self.cmd_processor.send_command(shell, "AT+CGMM")
+        resp_mod = self.cmd_processor.get_dev_info(shell)
+        self.csv_writer.write("Manufacturer: " + resp_man, "Model: " + resp_mod )
+        

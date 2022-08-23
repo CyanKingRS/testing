@@ -50,7 +50,7 @@ class JSON_handler:
                 return i['type']
            
     def read_ssh_info(self, dev_number):
-        return self.__config[dev_number]['ssh_username'], self.__config[dev_number]['ssh_password'], self.__config[dev_number]['ssh_ip']
+        return self.__config['devices'][dev_number]['ssh_name'], self.__config['devices'][dev_number]['ssh_password'], self.__config['devices'][dev_number]['ssh_ip']
 
     def find_device(self, dev_name):
         """This function finds if the device that is being tested is in the config file and returns it's number in the list."""

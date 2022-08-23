@@ -7,7 +7,7 @@
             "type":"serial",
             "ssh_name":"",
             "ssh_ip":"",
-            "ssh_pasword":"",
+            "ssh_password":"",
             "commands":[
                 {"command":"ATE1","expected":"OK", "arguments":""},
                 {"command":"AT+CMGF=1","expected":"OK", "arguments":""},
@@ -20,9 +20,12 @@
             "type":"ssh",
             "ssh_name":"root",
             "ssh_ip":"192.168.1.1",
-            "ssh_pasword":"Admin123",
+            "ssh_password":"Admin123",
             "commands":[
-                {"command":"ATE1","expected":"ERROR","arguments":""}
+                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"ATE1","expected":"OK","arguments":""}
             ]
         }
     ]
