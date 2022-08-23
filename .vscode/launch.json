@@ -12,7 +12,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "sudo": true,
-            "args": ["trm240"]
+            "args": ["trm240", "/dev/ttyUSB3"]
             
         }
     ]

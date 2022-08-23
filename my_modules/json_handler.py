@@ -44,6 +44,10 @@ class JSON_handler:
         return self.__config
         
     
-    
+    def read_type(self, name):
+        for i in self.__config["devices"]:
+            if name == i['name']:
+                return i['type']
            
-
+    def read_ssh_info(self, dev_number):
+        return self.__config[dev_number]['ssh_username'], self.__config[dev_number]['ssh_password'], self.__config[dev_number]['ssh_ip']

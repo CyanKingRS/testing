@@ -41,7 +41,7 @@ class Handler:
 
 
     def find_device_name(self, dev_name, data):
-        """This function finds if the device that is being tested is in the config file."""
+        """This function finds if the device that is being tested is in the config file and returns it's number in the list."""
         index = 0
         for i in data['devices']:
             if dev_name.casefold() == i['name'].casefold():
