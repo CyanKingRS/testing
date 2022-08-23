@@ -15,7 +15,7 @@ class Serial_AT_handler:
         self.printer = printer
         
 
-    def process_all_ser_commands(self, ser, data, dev_number):
+    def process_all_commands(self, ser, data, dev_number):
         """This function checks if the device is in the config file and then tests all the commands."""
         try:
             device = data['devices'][dev_number]
@@ -41,20 +41,6 @@ class Serial_AT_handler:
             print("Error: device not found in config file.")
             raise Exception(t)
                 
-
-
-    def find_device_name(self, dev_name, data):
-        """This function finds if the device that is being tested is in the config file and returns it's number in the list."""
-        index = 0
-        for i in data['devices']:
-            if dev_name.casefold() == i['name'].casefold():
-                return index
-            
-            else:
-                index += 1
-                
-        return None
-
 
             
     

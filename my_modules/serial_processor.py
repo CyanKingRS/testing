@@ -48,6 +48,6 @@ class Serial_processor:
         
         self.printer.print_device(name)
         
-        self.handler.process_all_ser_commands(self.ser, data, dev_number)
+        self.handler.process_all_commands(self.ser, data, dev_number)
         
 

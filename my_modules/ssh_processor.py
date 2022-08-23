@@ -3,8 +3,6 @@
 
 import paramiko
 
-from my_modules.serial_at_handler import Serial_AT_handler
-from my_modules.serial_command_processor import Ser_command_processor
 from my_modules.csv_writer import CSV_Writer
 from my_modules.info_printer import Printer
 from my_modules.json_handler import JSON_handler
@@ -14,10 +12,6 @@ class Ssh_processor:
     def __init__(self,  configer:JSON_handler, name='rutx11', port=22):
         self.printer=Printer()
         
-        self.handler=Serial_AT_handler(
-            csv_writer=CSV_Writer(name),
-            cmd_processor=Ser_command_processor(),
-            printer=Printer())
         self.configer = configer
         
         self.__login(name, port)
@@ -34,16 +28,12 @@ class Ssh_processor:
 
     def __start(self, name):
 
-        self.handler.write_device_info(self.ser)
-        
-        self.printer.print_device(name)
-        
-        self.handler.process_all_ser_commands(self.ser, self.data, self.dev_number)
+       pass
         
 
     def __login(self, name, port):
         self.data = self.configer.read()
-        self.dev_number = self.handler.find_device_name(name, self.data)
+        self.dev_number = self.configer.find_device(name)
         username, password, ip = self.configer.read_ssh_info(self.dev_number) 
         
         self.ssh = paramiko.SSHClient()
