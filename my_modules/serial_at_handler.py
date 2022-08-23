@@ -1,15 +1,15 @@
 
 
 
-from my_modules.command_processor import Command_processor
+from my_modules.serial_command_processor import Ser_command_processor
 from my_modules.csv_writer import CSV_Writer
 from my_modules.info_printer import Printer
 
 
-class Handler:
+class Serial_AT_handler:
     
 
-    def __init__(self, csv_writer:CSV_Writer, cmd_processor:Command_processor, printer:Printer):
+    def __init__(self, csv_writer:CSV_Writer, cmd_processor:Ser_command_processor, printer:Printer):
         self.csv_writer = csv_writer
         self.cmd_processor = cmd_processor
         self.printer = printer

@@ -2,13 +2,14 @@
 
 
 import os
-import serial
-from my_modules.command_processor import Command_processor
-from my_modules.csv_writer import CSV_Writer
 
+import serial
+
+from my_modules.serial_command_processor import Ser_command_processor
+from my_modules.csv_writer import CSV_Writer
 from my_modules.info_printer import Printer
 from my_modules.json_handler import JSON_handler
-from my_modules.at_handler import Handler
+from my_modules.serial_at_handler import Serial_AT_handler
 
 
 class Serial_processor:
@@ -16,9 +17,9 @@ class Serial_processor:
         os.system('systemctl stop ModemManager.service')
         self.printer=Printer()
         
-        self.handler=Handler(
+        self.handler=Serial_AT_handler(
             csv_writer=CSV_Writer(name),
-            cmd_processor=Command_processor(),
+            cmd_processor=Ser_command_processor(),
             printer=Printer())
         
         self.configer=configer
@@ -41,7 +42,7 @@ class Serial_processor:
     def __start(self, name):
         data = self.configer.read()
         
-        dev_number = self.handler.find_device_name(name, data)
+        dev_number = self.configer.find_device(name)
         
         self.handler.write_device_info(self.ser)
         

@@ -51,3 +51,15 @@ class JSON_handler:
            
     def read_ssh_info(self, dev_number):
         return self.__config[dev_number]['ssh_username'], self.__config[dev_number]['ssh_password'], self.__config[dev_number]['ssh_ip']
+
+    def find_device(self, dev_name):
+        """This function finds if the device that is being tested is in the config file and returns it's number in the list."""
+        index = 0
+        for i in self.__config['devices']:
+            if dev_name.casefold() == i['name'].casefold():
+                return index
+            
+            else:
+                index += 1
+                
+        return None

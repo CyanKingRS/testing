@@ -1,7 +1,7 @@
 import time
 
 
-class Command_processor:
+class Ser_command_processor:
 
 
     def __init__(self):

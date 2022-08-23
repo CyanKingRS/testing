@@ -3,7 +3,7 @@ from termcolor import colored
 
 
 class Printer:
-    
+    """Class that acts as a printer to the computer's terminal."""
     
     def __init__(self):
         self.passed = 0
@@ -12,14 +12,17 @@ class Printer:
     
     
     def print_device(self, dev):
+        """A method prints the device name to the command line."""
         print(colored("Current testing device:" + dev, 'cyan'))
         
         
     def print_test_info(self, index, max_index, cmd, exp_res):
+        """A method that prints test information to the command line."""
         print(f"Current test: {index} / {max_index}. Command: {cmd}. Expected result: {exp_res}.\n Waiting for response...")
         
         
     def print_result(self, response, res):
+        """A method that prints the results of the test to the command line."""
         if res:
             print(f"Response: {response}. Result: " + colored("Passed.", 'green'))
             self.passed += 1
