@@ -23,8 +23,8 @@
             "ssh_password":"Admin123",
             "commands":[
                 {"command":"ATE1","expected":"OK","arguments":""},
-                {"command":"ATE1","expected":"OK","arguments":""},
-                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
+                {"command":"AT+CMGS=\"+370XXXXXXXX\"","expected":"OK","arguments":["Text.", "\u001a"]},
                 {"command":"ATE1","expected":"OK","arguments":""}
             ]
         }

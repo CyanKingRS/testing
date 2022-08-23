@@ -19,13 +19,14 @@ class Ssh_command_processor:
         return response, response==expected
     
     
-    def send_command(self, shell, command, timeout=0.5):
+    def send_command(self, shell, command, timeout=0.6):
         shell.send(command+'\r')
         time.sleep(timeout)
         
     def get_response(self, shell):
         txt = shell.recv(-1)
         split_txt = txt.split(b'\n\n\n')
+        print(split_txt)
         try:
             resp_str = split_txt[-1].decode('utf-8').strip('\n')
         except IndexError as ie:
@@ -36,6 +37,5 @@ class Ssh_command_processor:
     def get_dev_info(self, shell):
         txt = shell.recv(-1)
         split_txt = txt.split(b'\n\n\n')
-        print(split_txt)
         info_str = split_txt[1].decode('utf-8').strip('\n')
         return info_str
