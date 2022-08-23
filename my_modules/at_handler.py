@@ -15,20 +15,23 @@ class Handler:
         self.printer = printer
         
 
-    def process_all_commands(self, ser, data, dev_number):
+    def process_all_ser_commands(self, ser, data, dev_number):
         """This function checks if the device is in the config file and then tests all the commands."""
         try:
-            devices = data['devices']
-            device = devices[dev_number]
-            max_tests = self.find_test_number(data, dev_number)
+            device = data['devices'][dev_number]
+            
+            max_tests = len(device['commands'])
             self.csv_writer.write("Command", "Expected","Response","Result")
             
             index = 0
             for j in device['commands']:
                 index += 1
                 self.printer.print_test_info(index, max_tests, j['command'], j['expected'])
+                
                 response, res = self.cmd_processor.check_command(ser, j['command'], j['expected'], j['arguments'])
+                
                 self.printer.print_result(response, res)
+                
                 self.csv_writer.write(j['command'], j['expected'], response, res)
                 
         except KeyError as k:
@@ -53,15 +56,6 @@ class Handler:
         return None
 
 
-
-    def find_test_number(self, data, dev_number):
-        try:
-            devices = data['devices']
-            device = devices[dev_number]
-            return len(device['commands'])
-        
-        except:
-            print("Error: The device is not in the config file.")
             
     
     def write_device_info(self, ser):

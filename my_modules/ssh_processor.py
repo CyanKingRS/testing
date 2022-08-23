@@ -26,6 +26,7 @@ class Ssh_processor:
         
         self.ssh.exec_command('socat /dev/tty,raw,echo=0,escape=0x03 /dev/ttyUSB3,raw,setsid,sane,echo=0,nonblock ; stty sane\r')
         
+        
         self.__start(name)
 
 
