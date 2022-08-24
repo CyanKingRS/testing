@@ -22,9 +22,18 @@ class Ser_command_processor:
         
     def get_response(self, ser):
         """A method used to get the response of AT command. Returns a response as a string"""
-        txt = ser.readall()
-        split_txt = txt.split(b"\n")
+        # txt = ser.readall()
+        timeout = time.time() + 180
+        while time.time() < timeout:
+            txt = ser.read()           
+            time.sleep(1)              
+            data_left = ser.inWaiting()
+            txt += ser.read(data_left)
+            if txt:
+                break
+        
         try:
+            split_txt = txt.split(b"\n")
             resp_str = split_txt[-2].decode('utf-8').rstrip()
         except IndexError as ie:
             print("Error: Unknown command or too little wait time.")

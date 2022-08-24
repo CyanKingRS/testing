@@ -6,7 +6,6 @@ from my_modules.info_printer import Printer
 from my_modules.ssh_command_processor import Ssh_command_processor
 
 
-
 class Ssh_AT_handler:
     
     def __init__(self, csv_writer:CSV_Writer, cmd_processor:Ssh_command_processor, printer:Printer):
