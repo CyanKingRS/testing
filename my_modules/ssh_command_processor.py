@@ -35,7 +35,6 @@ class Ssh_command_processor:
         
         # txt = shell.recv(-1)
         split_txt = txt.split(b'\n\n\n')
-        print(txt)
         try:
             resp_str = split_txt[-1].decode('utf-8').strip('\n')
         except IndexError as ie:

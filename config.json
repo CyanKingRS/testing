@@ -5,9 +5,8 @@
         {
             "name":"trm240",
             "type":"serial",
-            "ssh_name":"",
-            "ssh_ip":"",
-            "ssh_password":"",
+            "port":"/dev/ttyUSB2",
+            "baudrate":"115200",
             "commands":[
                 {"command":"ATE1","expected":"OK", "arguments":""},
                 {"command":"AT+CMGF=1","expected":"OK", "arguments":""},
@@ -18,6 +17,7 @@
         {
             "name":"rutx11",
             "type":"ssh",
+            "port":"22",
             "ssh_name":"root",
             "ssh_ip":"192.168.1.1",
             "ssh_password":"Admin123",

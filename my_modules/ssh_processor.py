@@ -7,22 +7,22 @@ import paramiko
 
 from my_modules.csv_writer import CSV_Writer
 from my_modules.info_printer import Printer
-from my_modules.json_handler import JSON_handler
 from my_modules.ssh_at_handler import Ssh_AT_handler
 from my_modules.ssh_command_processor import Ssh_command_processor
 
 
 class Ssh_processor:
-    def __init__(self,  configer:JSON_handler, name='rutx11', port=22):
+    def __init__(self,  configer, args):
         self.printer=Printer()
         self.handler=Ssh_AT_handler(
-            csv_writer=CSV_Writer(name),
+            csv_writer=CSV_Writer(args.device),
             cmd_processor=Ssh_command_processor(),
             printer=Printer()
         )
         self.configer = configer
-        
-        self.__login(name, port)
+        self.data = self.configer.read()
+        self.dev_number = self.configer.find_device(args.device, args.dev_num)
+        self.__login(args.ssh_port, args.ssh_ip, args.ssh_username, args.ssh_password)
         
         self.ssh.exec_command('/etc/init.d/gsmd stop')
         self.shell = self.ssh.invoke_shell()
@@ -31,14 +31,14 @@ class Ssh_processor:
         time.sleep(0.5)
         i = self.shell.recv(-1)
         
-        self.__start(name)
+        self.__start(args.device)
 
 
     
 
     def __start(self, name):
         
-        self.handler.write_device_info(self.shell)
+        self.handler.write_device_info(self.ssh)
         
         self.printer.print_device(name)
         
@@ -46,10 +46,8 @@ class Ssh_processor:
        
         
 
-    def __login(self, name, port):
-        self.data = self.configer.read()
-        self.dev_number = self.configer.find_device(name)
-        username, password, ip = self.configer.read_ssh_info(self.dev_number) 
+    def __login(self, port, ip, username, password):
+        
         
         self.ssh = paramiko.SSHClient()
         self.ssh.load_system_host_keys()

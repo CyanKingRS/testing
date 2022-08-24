@@ -22,7 +22,6 @@ class Ser_command_processor:
         
     def get_response(self, ser):
         """A method used to get the response of AT command. Returns a response as a string"""
-        # txt = ser.readall()
         timeout = time.time() + 180
         while time.time() < timeout:
             txt = ser.read()           
@@ -38,6 +37,7 @@ class Ser_command_processor:
         except IndexError as ie:
             print("Error: Unknown command or too little wait time.")
             resp_str = "timeout".rstrip()
+            raise Exception(ie)
         return resp_str
 
 

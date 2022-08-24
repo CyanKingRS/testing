@@ -8,7 +8,7 @@ from my_modules.ssh_command_processor import Ssh_command_processor
 
 class Ssh_AT_handler:
     
-    def __init__(self, csv_writer:CSV_Writer, cmd_processor:Ssh_command_processor, printer:Printer):
+    def __init__(self, csv_writer, cmd_processor, printer):
         self.csv_writer = csv_writer
         self.cmd_processor = cmd_processor
         self.printer = printer
@@ -41,12 +41,8 @@ class Ssh_AT_handler:
             raise Exception(t)
     
     
-    def write_device_info(self, shell):
-        self.cmd_processor.send_command(shell, "ATE1")
-        self.cmd_processor.get_response(shell)
-        self.cmd_processor.send_command(shell, "AT+GMI")
-        resp_man = self.cmd_processor.get_dev_info(shell)
-        self.cmd_processor.send_command(shell, "AT+CGMM")
-        resp_mod = self.cmd_processor.get_dev_info(shell)
-        self.csv_writer.write("Manufacturer: " + resp_man, "Model: " + resp_mod )
+    def write_device_info(self, ssh):
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("ubus call mnfinfo get_value '{\"key\": \"name\"}'")
+        txt = ssh_stdout.readlines()
+        print(txt[1].split(': '))
         

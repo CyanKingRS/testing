@@ -12,7 +12,29 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "sudo": true,
-            "args": ["rutx11"]
+            "args": ["-d","rutx11"]
+            
+        },
+        {
+            "name": "Python: Current File with Args",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "sudo": true,
+            "args": ["-d","rutx11", "-shp", "22", "-ip", "192.168.1.1", "-un", "root", "-pw", "Admin123", ]
+            
+        },
+        {
+            "name": "Python: Current File with Args trm",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "sudo": true,
+            "args": ["-d","trm240", "-sp", "/dev/ttyUSB3", "-b", "115200" ]
             
         }
     ]
