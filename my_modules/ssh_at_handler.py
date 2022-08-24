@@ -1,9 +1,9 @@
 
 
 
-from my_modules.csv_writer import CSV_Writer
-from my_modules.info_printer import Printer
-from my_modules.ssh_command_processor import Ssh_command_processor
+# from my_modules.csv_writer import CSV_Writer
+# from my_modules.info_printer import Printer
+# from my_modules.ssh_command_processor import Ssh_command_processor
 
 
 class Ssh_AT_handler:
@@ -41,8 +41,12 @@ class Ssh_AT_handler:
             raise Exception(t)
     
     
-    def write_device_info(self, ssh):
+    def write_device_info(self, ssh, device):
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("ubus call mnfinfo get_value '{\"key\": \"name\"}'")
         txt = ssh_stdout.readlines()
-        print(txt[1].split(': '))
-        
+        name = txt[1].split('"')[-2][0:6]
+        if device.casefold() == name.casefold():
+            self.csv_writer.write('Modem: ' + name)
+        else:
+            print("Error: device name and the name given do not match.")
+            raise Exception

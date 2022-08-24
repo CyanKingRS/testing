@@ -38,7 +38,7 @@ class Ssh_processor:
 
     def __start(self, name):
         
-        self.handler.write_device_info(self.ssh)
+        self.handler.write_device_info(self.ssh, name)
         
         self.printer.print_device(name)
         

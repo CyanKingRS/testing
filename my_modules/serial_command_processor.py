@@ -47,7 +47,14 @@ class Ser_command_processor:
 
 
     def get_dev_info(self, ser):
-        txt = ser.readall()
+        timeout = time.time() + 180
+        while time.time() < timeout:
+            txt = ser.read()           
+            time.sleep(1)              
+            data_left = ser.inWaiting()
+            txt += ser.read(data_left)
+            if txt:
+                break
         split_txt = txt.split(b'\n')
         info_str = split_txt[1].decode('utf-8').rstrip()
         return info_str

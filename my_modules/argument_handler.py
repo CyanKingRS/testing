@@ -20,10 +20,13 @@ class Argument_handler:
         
     def configure_and_get_arguments(self):
         args = self.parser.parse_args()
+        
         configer = JSON_handler(args.config)
+        
         dev_index = configer.find_device(args.device, args.dev_num)
         data = configer.read()['devices'][dev_index]
         type = configer.read_type(args.device, args.dev_num)
+        
         if type == 'ssh':
             if data['port']:
                 self.parser.set_defaults(ssh_port=data['port'])
@@ -33,10 +36,12 @@ class Argument_handler:
                 self.parser.set_defaults(ssh_ip=data['ssh_ip'])
             if data['ssh_password']:
                 self.parser.set_defaults(ssh_password=data['ssh_password'])
+    
         elif type == 'serial':
             if data['port']:
                 self.parser.set_defaults(serial_port=data['port'])
             if data['baudrate']:
                 self.parser.set_defaults(baudrate=data['baudrate'])
+    
         return configer, self.parser.parse_args()
         

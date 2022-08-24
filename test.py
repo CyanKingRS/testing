@@ -3,7 +3,6 @@
 from my_modules.argument_handler import Argument_handler
 
 
-
 def main():
     try:
         print("Starting...")
@@ -21,6 +20,8 @@ def main():
     except ValueError as v:
         print("Erorr: Bad arguments.")
         raise Exception(v)
+    except Exception as e:
+        print("An error ocured. Stopping...")
 
 
     
