@@ -34,7 +34,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "sudo": true,
-            "args": ["-d","trm240", "-sp", "/dev/ttyUSB3", "-b", "115200" ]
+            "args": ["-d","trm240", "-sp", "/dev/ttyUSB2", "-b", "115200" ]
             
         }
     ]

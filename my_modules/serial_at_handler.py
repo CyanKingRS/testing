@@ -41,10 +41,9 @@ class Serial_AT_handler:
     
     def write_device_info(self, ser):
         "A function which gets the device info from the connected device and uploads it to the csv file."
-        self.cmd_processor.send_command(ser, "ATE1")
-        self.cmd_processor.send_command( ser, "AT+GMI")
-        resp_man = self.cmd_processor.get_dev_info(ser)
-        self.cmd_processor.send_command( ser, "AT+CGMM")
-        resp_mod = self.cmd_processor.get_dev_info(ser)
-        self.csv_writer.write("Manufacturer: " + resp_man, "Model: " + resp_mod )
+        response, res = self.cmd_processor.check_command(ser, "ATE1", 'OK')
+        if res:
+            resp_man = self.cmd_processor.get_dev_info(ser, "AT+GMI")
+            resp_mod = self.cmd_processor.get_dev_info(ser, "AT+CGMM")
+            self.csv_writer.write("Manufacturer: " + resp_man, "Model: " + resp_mod )
         

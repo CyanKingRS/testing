@@ -5,6 +5,7 @@ import os
 
 import serial
 
+from serial import SerialException
 from my_modules.serial_command_processor import Ser_command_processor
 from my_modules.csv_writer import CSV_Writer
 from my_modules.info_printer import Printer
@@ -34,7 +35,7 @@ class Serial_processor:
                     timeout=0.5
             ) 
             self.__start(args.device, args.dev_num)
-        except Exception as se:
+        except SerialException as se:
             print("Error: No such port file exists: " + args.serial_port)
             raise Exception(se)
 
