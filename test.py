@@ -20,8 +20,8 @@ def main():
     except ValueError as v:
         print("Erorr: Bad arguments.")
         raise Exception(v)
-    # except Exception as e:
-    #     print("An error ocured. Stopping...")
+    except Exception as e:
+        print("An error ocured. Stopping...")
 
 
     

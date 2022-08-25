@@ -27,9 +27,11 @@ class Serial_AT_handler:
                 response, res = self.cmd_processor.check_command(ser, j['command'], j['expected'], j['arguments'])
                 
                 self.printer.print_result(response, res)
-                
-                self.csv_writer.write(j['command'], j['expected'], response, res)
-                
+                if res:
+                    self.csv_writer.write(j['command'], j['expected'], response, 'Passed')
+                else:
+                    self.csv_writer.write(j['command'], j['expected'], response, 'Failed')
+
         except KeyError as k:
             print("Error: incorrect config file.")
             raise Exception(k)
