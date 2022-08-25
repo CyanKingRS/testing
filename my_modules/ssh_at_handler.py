@@ -1,23 +1,22 @@
 
 
-
 # from my_modules.csv_writer import CSV_Writer
 # from my_modules.info_printer import Printer
 # from my_modules.ssh_command_processor import Ssh_command_processor
 
 
 class Ssh_AT_handler:
-    
+    '''A class that handles the at command testing of a ssh connection.'''
     def __init__(self, csv_writer, cmd_processor, printer):
         self.csv_writer = csv_writer
         self.cmd_processor = cmd_processor
         self.printer = printer
         
         
-    def process_all_commands(self, shell, data, dev_number):
+    def process_all_commands(self, shell, data, dev_number, ip):
+        '''Method to go through all the config commands, test them and print the results. Throws an error if incorrect config file, or device is not found.'''
         try:
             device = data['devices'][dev_number]
-            
             max_tests = len(device['commands'])
             self.csv_writer.write("Command","Expected","Response","Result")
             
@@ -25,9 +24,9 @@ class Ssh_AT_handler:
             for j in device['commands']:
                 index+=1
                 
-                self.printer.print_test_info(index, max_tests, j['command'], j['expected'])
+                self.printer.print_test_info(index, max_tests, j['command'], j['expected'], device['name'])
                 
-                response, res = self.cmd_processor.check_command(shell, j['command'], j['expected'], j['arguments'])
+                response, res = self.cmd_processor.check_command(shell, j['command'], j['expected'], ip, j['arguments'] )
                 
                 self.printer.print_result(response, res)
                 
@@ -42,6 +41,7 @@ class Ssh_AT_handler:
     
     
     def write_device_info(self, ssh, device):
+        '''Method that gets the device info from shell connection and compares it to the user's given name. If incorrect, throws an exception.'''
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("ubus call mnfinfo get_value '{\"key\": \"name\"}'")
         txt = ssh_stdout.readlines()
         name = txt[1].split('"')[-2][0:6]

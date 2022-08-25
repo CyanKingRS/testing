@@ -5,7 +5,7 @@ import os
 
 
 class JSON_handler:
-
+    '''Class that handles reading the JSON config file'''
     
     __config = None
     __message = None
@@ -17,6 +17,7 @@ class JSON_handler:
 
         
     def __load_config(self, path):
+        '''Method to load the config file and check if it is correct.'''
         if not '/' in path: 
             if not os.path.exists(os.getcwd() + "/" + path):
                 self.__message = 'Error: could not find file.'
@@ -46,10 +47,12 @@ class JSON_handler:
 
 
     def read(self):
+        '''Method to return the config file data.'''
         return self.__config
         
     
     def read_type(self, name, ind):
+        '''Method to read the type of the device from the config file.'''
         index = 0
         for i in self.__config["devices"]:
             if name == i['name'] and index == ind:
@@ -57,11 +60,8 @@ class JSON_handler:
             elif index != ind:
                 index += 1 
            
-    def read_ssh_info(self, dev_number):
-        return self.__config['devices'][dev_number]['ssh_name'], self.__config['devices'][dev_number]['ssh_password'], self.__config['devices'][dev_number]['ssh_ip']
-
     def find_device(self, dev_name:str, num:int):
-        """This function finds if the device that is being tested is in the config file and returns it's number in the list."""
+        """This method finds if the device that is being tested is in the config file and returns it's number in the list."""
         index1 = 0
         index = 0
         for i in self.__config['devices']:

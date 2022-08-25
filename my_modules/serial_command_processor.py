@@ -3,16 +3,16 @@ import time
 
 
 class Ser_command_processor:
-
+    '''A class that has methods to test device's commands using a serial connection'''
 
     def __init__(self):
         pass
     
     
     def check_command(self, ser, command, expected, args=None):
-        """A method used to check the given command's output by comparring to the expected one. Returns a boolean."""
+        """A method used to check the given command's output by comparring to the expected one. Returns a boolean and the response."""
         ser_cpy = ser
-        while True:
+        for i in range(5):
             try:
                 if ser == None:
                     ser = ser_cpy
@@ -29,6 +29,8 @@ class Ser_command_processor:
                 ser = None
                 time.sleep(8)
                 print("Error: connection lost. Retrying...")
+        print("Error: no connected device.")
+        raise Exception()
         
         
         
@@ -46,11 +48,13 @@ class Ser_command_processor:
 
 
     def send_command(self, ser, command, timeout=0.5):
+        '''Method that send the command to serial device and waits for the set timeout.'''
         ser.write(command.encode() + b"\r")
         time.sleep(timeout)
 
 
     def get_dev_info(self, ser, cmd):
+        '''Method to get device info.'''
         ser_cpy = ser
         while True:
             try:
@@ -72,6 +76,7 @@ class Ser_command_processor:
 
 
     def __read_until_resp(self, ser):
+        '''Method to wait and get response from the device. Returns the response or "timeout"'''
         timeout = time.time() + 180
         txt=''
         while time.time() < timeout:

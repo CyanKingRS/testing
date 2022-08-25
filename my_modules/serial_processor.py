@@ -13,6 +13,7 @@ from my_modules.serial_at_handler import Serial_AT_handler
 
 
 class Serial_processor:
+    '''Class to process serial at command testing.'''
     def __init__(self, configer, args):
         os.system('systemctl stop ModemManager.service')
         self.printer=Printer()
@@ -46,8 +47,6 @@ class Serial_processor:
         dev_index = self.configer.find_device(name, dev_num)
         
         self.handler.write_device_info(self.ser)
-        
-        self.printer.print_device(name)
         
         self.handler.process_all_commands(self.ser, self.configer.read(), dev_index)
         

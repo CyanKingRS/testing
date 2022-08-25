@@ -6,6 +6,7 @@ from my_modules.json_handler import JSON_handler
 
 
 class Argument_handler:
+    '''A class to handle argument understanding and parsing.'''
     def __init__(self):
         self.parser = argparse.ArgumentParser()
         self.parser.add_argument('-d','--device', dest='device',type=str, required=True, help="Testing device name, that matches the name in the config.")
@@ -19,6 +20,8 @@ class Argument_handler:
         self.parser.add_argument('-c', '--config', dest='config', type=str, default='config.json', help='Specify the path of the config file. Default: ~/config.json')
         
     def configure_and_get_arguments(self):
+        '''Method to get arguments from command line and asign them correctly. The options in config file overwrite the text input if the config option is not empty. 
+        If both config and command line are empty the default values are used.'''
         args = self.parser.parse_args()
         
         configer = JSON_handler(args.config)

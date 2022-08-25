@@ -8,7 +8,7 @@
             "port":"/dev/ttyUSB2",
             "baudrate":"115200",
             "commands":[
-                {"command":"ATETETETETETE","expected":"ERROR", "arguments":""},
+                {"command":"AT+COPS=?","expected":"OK", "arguments":""},
                 {"command":"AT+CMGF=1","expected":"OK", "arguments":""},
                 {"command":"AT+CMGS=?","expected":"OK", "arguments":[]},
                 {"command":"ATE1","expected":"OK", "arguments":""},
@@ -37,9 +37,25 @@
             "ssh_ip":"192.168.1.1",
             "ssh_password":"Admin123",
             "commands":[
+                {"command":"AT+COPS=?","expected":"OK","arguments":""},
+                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
+                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
+                {"command":"AT","expected":"OK","arguments":""},
                 {"command":"ATE1","expected":"OK","arguments":""},
                 {"command":"AT+CMGF=1","expected":"OK","arguments":""},
-                {"command":"AT+CMGS=\"+37063834583\"","expected":"OK","arguments":["Text.", "\u001a"]},
+                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
+                {"command":"AT","expected":"OK","arguments":""},
+                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
+                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
+                {"command":"AT","expected":"OK","arguments":""},
+                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
+                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
+                {"command":"AT","expected":"OK","arguments":""},
+                {"command":"ATE1","expected":"OK","arguments":""},
+                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
+                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
                 {"command":"AT","expected":"OK","arguments":""}
             ]
         }

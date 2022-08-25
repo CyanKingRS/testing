@@ -2,7 +2,7 @@
 
 
 class Serial_AT_handler:
-    
+    '''A class to handle AT command testing using a serial connection.'''
 
     def __init__(self, csv_writer, cmd_processor, printer):
         self.csv_writer = csv_writer
@@ -21,7 +21,8 @@ class Serial_AT_handler:
             index = 0
             for j in device['commands']:
                 index += 1
-                self.printer.print_test_info(index, max_tests, j['command'], j['expected'])
+                
+                self.printer.print_test_info(index, max_tests, j['command'], j['expected'], device['name'])
                 
                 response, res = self.cmd_processor.check_command(ser, j['command'], j['expected'], j['arguments'])
                 

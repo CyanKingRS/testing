@@ -1,4 +1,5 @@
-'''Device command tessting process with serial connection.'''
+
+
 
 
 import time
@@ -12,6 +13,7 @@ from my_modules.ssh_command_processor import Ssh_command_processor
 
 
 class Ssh_processor:
+    '''Class that acts like a process to test device's commands using a ssh connection .'''
     def __init__(self,  configer, args):
         self.printer=Printer()
         self.handler=Ssh_AT_handler(
@@ -19,37 +21,47 @@ class Ssh_processor:
             cmd_processor=Ssh_command_processor(),
             printer=Printer()
         )
+        
         self.configer = configer
+        
         self.data = self.configer.read()
         self.dev_number = self.configer.find_device(args.device, args.dev_num)
+        
         self.__login(args.ssh_port, args.ssh_ip, args.ssh_username, args.ssh_password)
         
         self.ssh.exec_command('/etc/init.d/gsmd stop')
+        
         self.shell = self.ssh.invoke_shell()
         
         self.shell.send('socat /dev/tty,raw,echo=0,escape=0x03 /dev/ttyUSB3,raw,setsid,sane,echo=0,nonblock ; stty sane\r')
+        
         time.sleep(0.5)
+        
         i = self.shell.recv(-1)
         
-        self.__start(args.device)
+        self.__start(args.device, args.ssh_ip)
 
 
     
 
-    def __start(self, name):
+    def __start(self, name, ip):
         
         self.handler.write_device_info(self.ssh, name)
         
-        self.printer.print_device(name)
-        
-        self.handler.process_all_commands(self.shell, self.data, self.dev_number)
+        self.handler.process_all_commands(self.shell, self.data, self.dev_number, ip)
        
         
 
     def __login(self, port, ip, username, password):
-        
-        
+        '''Method to login and make an ssh connection.'''
         self.ssh = paramiko.SSHClient()
         self.ssh.load_system_host_keys()
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self.ssh.connect(ip, port, username, password)
+        try:
+            self.ssh.connect(ip, port, username, password)
+        except paramiko.AuthenticationException as ae:
+            print("Error: Incorrect authentication information.")
+            raise(ae)
+        except Exception as gaie:
+            print("Error: Incorrect ip address/port.")
+            raise(gaie)
