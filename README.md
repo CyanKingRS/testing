@@ -38,6 +38,7 @@ For ssh connection these options are necesery:
 - "ssh_password" can be changed to the password of the ssh connection.
 
 Example:
+'''json
 {
     "devices":[
         {
@@ -67,3 +68,4 @@ Example:
         }
     ]
 }
+'''
