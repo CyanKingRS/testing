@@ -25,7 +25,7 @@ class CSV_Writer:
         '''Creates the file.'''
         now = datetime.now()
         try:
-            os.makedirs(os.getcwd() +"/results", mode=0o000, exist_ok=False)
+            os.makedirs(os.getcwd() +"/results", mode=0o777, exist_ok=False)
             os.chmod(os.getcwd() +"/results",mode=0o777)
         except:
             pass
