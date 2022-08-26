@@ -1,9 +1,11 @@
 # Automatic AT Command Testing Script
-This project was made to test AT commands (also known as Hayes commands) on ruoters with a SSH or Serial connection from linux os computers. 
+This project was made to test AT commands (also known as Hayes commands) on routers with an SSH or Serial connection for Linux OS computers. 
 
+## Prerequisites 
+To run this script one must have Python3 as well as pySerial and paramiko modules installed. To install python3 go to https://www.python.org/downloads/ choose one of the versions provided, download the file and install it or use an installer. Alternatively, the installation can be done through the terminal using the command 'sudo apt install python3'. To install the packages in your computer's terminal use the command 'python3 -m pip install <module_name>'. 
 
 ## Starting
-To start the tests download all the files, configure the config file to have the correct information (look bellow for example), then open the terminal and run the script with administration privelages. 
+To start the tests download all the files, configure the config file to have the correct information (look bellow for example), then open the terminal and run the script with administrator privileges. 
 Example: sudo python3 test.py -d <testing_device_name>
 
 The possible arguments that can be passed launching the command are:
@@ -18,23 +20,23 @@ The possible arguments that can be passed launching the command are:
 -  -pw SSH_PASSWORD, --password SSH_PASSWORD     Specify the password of the user for ssh connection. Default: Admin123 or config value.
 -  -c CONFIG, --config CONFIG                    Specify the path of the config file. Default: ~/config.json
 
-Passed arguments will only change the default values of the nesecery options. Config options override the arguments. Therefore, most of the configuration should be done in the config file. Basically, if config options are empty, then arguments will be taken, if no arguments are given, general default values are used.
+Passed arguments will only change the default values of the necessary options. Config options override the arguments. Therefore, most of the configuration should be done in the config file. Basically, if config options are empty, then arguments will be taken, if no arguments are given, general default values are used.
 
 ## Config examples
 The config.json file is a JSON file. Therefore, all rules that would apply a regular JSON file still apply. These variables can be changed:
-- "name" can be changed to any desired string. However, if the argument is incorrect when lauching the script an error will occur, because the "name" string needs to match the argument passed. The uppercase and lowercase charecters do not differ from each other when comparing. 
+- "name" can be changed to any desired string. However, if the argument is incorrect when lauching the script an error will occur, because the "name" string needs to match the argument passed. The uppercase and lowercase characters do not differ from each other when comparing. 
 - "type" can be either serial or ssh depending on which connection type the router uses.
 - "commands". Commands to test can be added to this list. The command structure is {"command":"full_command","expected":"expected_result", "arguments":"additional_strings_sent_after_command"}. The arguments can be either a list or empty.
 
 
-For serial connection these options are necesery to be included:
-- "port" can be changed to the usb port of the testing device. Can be found in /dev/ folder on linux.
+For serial connection these options are necessary to be included:
+- "port" can be changed to the USB port of the testing device. Can be found in /dev/ folder on Linux.
 - "baudrate" can be changed to the baudrate required for comunication with the device.
 
-For ssh connection these options are necesery:
+For ssh connection these options are necessary:
 - "port" can be changed to the ssh port of the device. 
 - "ssh_name" can be changed to the username of the ssh connection.
-- "ssh_ip" can be changed to the ip address of the conneted device.
+- "ssh_ip" can be changed to the ip address of the connected device.
 - "ssh_password" can be changed to the password of the ssh connection.
 
 Example:

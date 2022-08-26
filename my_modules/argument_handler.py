@@ -13,7 +13,7 @@ class Argument_handler:
         self.parser.add_argument('-shp', '--shell_port', dest='ssh_port', type=int, default=22, help='The ssh port of the device. Default: 22 or config')
         self.parser.add_argument('-sp', '--serial_port', dest='serial_port', type=str, default='/dev/ttyUSB2', help='The serial port of the device. Default: /dev/ttyUSB2 or config value.')
         self.parser.add_argument('-dn', '--dev_num', dest='dev_num', type=int, default=0, help='Device number to use if multiple devices of the same name are in the config file. Default: 0')
-        self.parser.add_argument('-b', '--broadband', dest='broadband', type=int, default='115200', help='Broadband for serial connections. Default: 115200 or config value.')
+        self.parser.add_argument('-b', '--baudrate', dest='baudrate', type=int, default='115200', help='Baudrate for serial connections. Default: 115200 or config value.')
         self.parser.add_argument('-ip', dest='ssh_ip', type=str, default='192.168.1.1', help='Specify the ip of the testing device for ssh connection. Default: 192.168.1.1 or config value.')
         self.parser.add_argument('-un', '--username', dest='ssh_username', type=str, default='admin', help='Specify the username for ssh connection. Default: admin or config value.')
         self.parser.add_argument('-pw', '--password', dest='ssh_password', type=str, default='Admin123', help='Specify the password of the user for ssh connection. Default: Admin123 or config value.')
