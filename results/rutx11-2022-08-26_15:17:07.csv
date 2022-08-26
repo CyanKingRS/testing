@@ -1,5 +1,5 @@
 Modem: RUTX11,,,
-Manufacturer: N/A,Model: N/A,Revision: N/A,
+Quectel,EG06,Revision: EG06ELAR04A04M4G,
 Command,Expected,Response,Result
 AT,OK,OK,Passed
 AT+CMGF=1,OK,OK,Passed
