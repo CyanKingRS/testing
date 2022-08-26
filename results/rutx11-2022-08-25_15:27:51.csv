@@ -1,4 +1,3 @@
-Modem: RUTX11;
 Command;Expected;Response;Result;
 AT+COPS=?;OK;OK;Passed;
 AT+CMGF=1;OK;OK;Passed;
