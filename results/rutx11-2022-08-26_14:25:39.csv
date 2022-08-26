@@ -1,0 +1,10 @@
+Modem: RUTX11,,,
+Manufacturer: N/A,Model: N/A,Revision: N/A,
+Command,Expected,Response,Result
+AT,OK,OK,Passed
+AT+CMGF=1,OK,OK,Passed
+AT+CMGS=?,OK,OK,Passed
+AT,OK,OK,Passed
+ATE1,OK,OK,Passed
+AT+CMGF=1,OK,OK,Passed
+AT+CMGS=?,OK,OK,Passed

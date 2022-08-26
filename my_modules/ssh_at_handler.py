@@ -52,9 +52,9 @@ class Ssh_AT_handler:
             ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("gsmctl -w -m -y")
             txt = ssh_stdout.readlines()
            
-            mnf_name = txt[0].strip('\n')
-            mnf_model = txt[1].strip('\n')
-            mnf_rev = txt[2].strip('\n')
+            mnf_name = txt[0].strip('\n').rstrip()
+            mnf_model = txt[1].strip('\n').rstrip()
+            mnf_rev = txt[2].strip('\n').rstrip()
             self.csv_writer.write('Manufacturer: ' + mnf_name, 'Model: ' + mnf_model, 'Revision: ' + mnf_rev)
         else:
             print("Error: device name and the name given do not match.")

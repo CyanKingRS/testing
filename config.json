@@ -43,20 +43,7 @@
                 {"command":"AT","expected":"OK","arguments":""},
                 {"command":"ATE1","expected":"OK","arguments":""},
                 {"command":"AT+CMGF=1","expected":"OK","arguments":""},
-                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
-                {"command":"AT","expected":"OK","arguments":""},
-                {"command":"ATE1","expected":"OK","arguments":""},
-                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
-                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
-                {"command":"AT","expected":"OK","arguments":""},
-                {"command":"ATE1","expected":"OK","arguments":""},
-                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
-                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
-                {"command":"AT","expected":"OK","arguments":""},
-                {"command":"ATE1","expected":"OK","arguments":""},
-                {"command":"AT+CMGF=1","expected":"OK","arguments":""},
-                {"command":"AT+CMGS=?","expected":"OK","arguments":[]},
-                {"command":"AT","expected":"OK","arguments":""}
+                {"command":"AT+CMGS=?","expected":"OK","arguments":[]}
             ]
         }
     ]
