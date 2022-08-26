@@ -49,5 +49,5 @@ class Serial_AT_handler:
             resp_man = self.cmd_processor.get_dev_info(ser, "AT+GMI")
             resp_mod = self.cmd_processor.get_dev_info(ser, "AT+CGMM")
             resp_rev = self.cmd_processor.get_dev_info(ser, "AT+GMR")
-            self.csv_writer.write(resp_man, resp_mod, "Revision:" + resp_rev)
+            self.csv_writer.write(resp_man, resp_mod, "Revision: " + resp_rev)
         
