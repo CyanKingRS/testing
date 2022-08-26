@@ -8,7 +8,7 @@
             "port":"/dev/ttyUSB2",
             "baudrate":"115200",
             "commands":[
-                {"command":"AT+COPS=?","expected":"OK", "arguments":""},
+                {"command":"AT+COPS?","expected":"OK", "arguments":""},
                 {"command":"AT+CMGF=1","expected":"OK", "arguments":""},
                 {"command":"AT+CMGS=?","expected":"OK", "arguments":[]},
                 {"command":"ATE1","expected":"OK", "arguments":""},

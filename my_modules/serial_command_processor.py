@@ -84,7 +84,7 @@ class Ser_command_processor:
                 time.sleep(1)              
                 data_left = ser.inWaiting()
                 txt += ser.read(data_left)
-                if txt:
+                if txt and ((b'\r\n\r\n' in txt) or (b'\r\r\n' in txt)):
                     return txt
            
         return 'timeout'
