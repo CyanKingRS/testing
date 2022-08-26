@@ -50,6 +50,8 @@ class Ssh_processor:
     
         
         self.handler.process_all_commands(self.shell, self.data, self.dev_number, ip)
+        
+        self.ssh.exec_command('/etc/init.d/gsmd start')
        
         
 
@@ -66,3 +68,4 @@ class Ssh_processor:
         except Exception as gaie:
             print("Error: Incorrect ip address/port.")
             raise(gaie)
+        
