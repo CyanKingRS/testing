@@ -7,16 +7,16 @@ To start the tests download all the files, configure the config file to have the
 Example: sudo python3 test.py -d <testing_device_name>
 
 The possible arguments that can be passed launching the command are:
-  -h, --help                                    Show help message and exit
-  -d DEVICE, --device DEVICE                    Testing device name, that matches the name in the config. Must be passed otherwise the program won't start.
-  -shp SSH_PORT, --shell_port SSH_PORT          The ssh port of the device. Default: 22 or config
-  -sp SERIAL_PORT, --serial_port SERIAL_PORT    The serial port of the device. Default: /dev/ttyUSB2 or config value.
-  -dn DEV_NUM, --dev_num DEV_NUM                Device index to use if multiple devices of the same name are in the config file. Default: 0
-  -b BROADBAND, --broadband BROADBAND           Broadband for serial connections. Default: 115200 or config value.
-  -ip SSH_IP                                    Specify the ip of the testing device for ssh connection. Default: 192.168.1.1 or config value.
-  -un SSH_USERNAME, --username SSH_USERNAME     Specify the username for ssh connection. Default: admin or config value.
-  -pw SSH_PASSWORD, --password SSH_PASSWORD     Specify the password of the user for ssh connection. Default: Admin123 or config value.
-  -c CONFIG, --config CONFIG                    Specify the path of the config file. Default: ~/config.json
+-  -h, --help                                    Show help message and exit
+-  -d DEVICE, --device DEVICE                    Testing device name, that matches the name in the config. Must be passed otherwise the program won't start.
+-  -shp SSH_PORT, --shell_port SSH_PORT          The ssh port of the device. Default: 22 or config
+-  -sp SERIAL_PORT, --serial_port SERIAL_PORT    The serial port of the device. Default: /dev/ttyUSB2 or config value.
+-  -dn DEV_NUM, --dev_num DEV_NUM                Device index to use if multiple devices of the same name are in the config file. Default: 0
+-  -b BROADBAND, --broadband BROADBAND           Broadband for serial connections. Default: 115200 or config value.
+-  -ip SSH_IP                                    Specify the ip of the testing device for ssh connection. Default: 192.168.1.1 or config value.
+-  -un SSH_USERNAME, --username SSH_USERNAME     Specify the username for ssh connection. Default: admin or config value.
+-  -pw SSH_PASSWORD, --password SSH_PASSWORD     Specify the password of the user for ssh connection. Default: Admin123 or config value.
+-  -c CONFIG, --config CONFIG                    Specify the path of the config file. Default: ~/config.json
 
 Passed arguments will only change the default values of the nesecery options. Config options override the arguments. Therefore, most of the configuration should be done in the config file. Basically, if config options are empty, then arguments will be taken, if no arguments are given, general default values are used.
 
