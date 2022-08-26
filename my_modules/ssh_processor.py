@@ -29,6 +29,8 @@ class Ssh_processor:
         
         self.__login(args.ssh_port, args.ssh_ip, args.ssh_username, args.ssh_password)
         
+        self.handler.write_device_info(self.ssh, args.device)
+        
         self.ssh.exec_command('/etc/init.d/gsmd stop')
         
         self.shell = self.ssh.invoke_shell()
@@ -39,14 +41,13 @@ class Ssh_processor:
         
         i = self.shell.recv(-1)
         
-        self.__start(args.device, args.ssh_ip)
+        self.__start( args.ssh_ip)
 
 
     
 
-    def __start(self, name, ip):
-        
-        self.handler.write_device_info(self.ssh, name)
+    def __start(self, ip):
+    
         
         self.handler.process_all_commands(self.shell, self.data, self.dev_number, ip)
        

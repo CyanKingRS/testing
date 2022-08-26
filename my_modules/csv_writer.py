@@ -17,7 +17,7 @@ class CSV_Writer:
     def write(self, *info):
         '''Writes info to file'''
         for i in info:
-            self.file.write(f"{i};")
+            self.file.write(f"{i},")
         self.file.write('\n')
         
         
