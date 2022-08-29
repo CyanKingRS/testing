@@ -14,7 +14,7 @@ The possible arguments that can be passed launching the command are:
 -  -shp SSH_PORT, --shell_port SSH_PORT          The ssh port of the device. Default: 22 or config
 -  -sp SERIAL_PORT, --serial_port SERIAL_PORT    The serial port of the device. Default: /dev/ttyUSB2 or config value.
 -  -dn DEV_NUM, --dev_num DEV_NUM                Device index to use if multiple devices of the same name are in the config file. Default: 0
--  -b BROADBAND, --broadband BROADBAND           Broadband for serial connections. Default: 115200 or config value.
+-  -b BAUDRATE, --baudrate BAUDRATE              Baudrate for serial connections. Default: 115200 or config value.
 -  -ip SSH_IP                                    Specify the ip of the testing device for ssh connection. Default: 192.168.1.1 or config value.
 -  -un SSH_USERNAME, --username SSH_USERNAME     Specify the username for ssh connection. Default: admin or config value.
 -  -pw SSH_PASSWORD, --password SSH_PASSWORD     Specify the password of the user for ssh connection. Default: Admin123 or config value.
