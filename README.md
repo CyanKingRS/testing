@@ -71,3 +71,17 @@ Example:
     ]
 }
 ```
+
+## Python Library Dependencies
+This project uses these Python modules:
+- argparse
+- colorama
+- datetime
+- json
+- os
+- paramiko
+- serial(pySerial)
+- serial
+- subprocess
+- termcolor
+- time
